@@ -1,0 +1,16 @@
+{
+  "name": "Markus",
+  "version": "1.0.0",
+  "description": "",
+  "main": "loader.js",
+  "scripts": [],
+  "author": "Markus",
+  "license": "ISC",
+  "dependencies": {
+    "discord.js": "^13.6.0",
+    "docker": "^1.0.0",
+    "ytdl-core": "^4.10.1",
+    "rtp-ogg-opus": "^1.0.12"
+  },
+  "nodeVersion": "17.3.1"
+}
