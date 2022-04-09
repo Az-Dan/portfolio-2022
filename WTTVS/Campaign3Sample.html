@@ -1,0 +1,4627 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome To The Velvet Station: Amor Fati - greenhouse</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.preserve-whitespace {
+    white-space: pre-wrap;
+}
+
+.spoiler {
+    /* width: fit-content; */
+    display: inline-block;
+    /* This is more consistent across browsers, the old attribute worked well under Chrome but not FireFox. */
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image * {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 100%;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__reference-symbol {
+    grid-column: 1;
+    border-style: solid;
+    border-width: 2px 0 0 2px;
+    border-radius: 8px 0 0 0;
+    margin-left: 16px;
+    margin-top: 8px;
+}
+
+.chatlog__reference {
+    display: flex;
+    grid-column: 2;
+    margin-left: 1.2em;
+    margin-bottom: 0.25em;
+    font-size: 0.875em;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    align-items: center;
+}
+
+.chatlog__reference-avatar {
+    border-radius: 50%;
+    height: 16px;
+    width: 16px;
+    margin-right: 0.25em;
+}
+
+.chatlog__reference-name {
+    margin-right: 0.25em;
+    font-weight: 600;
+}
+
+.chatlog__reference-link {
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+.chatlog__reference-link:hover {
+    text-decoration: none;
+}
+
+.chatlog__reference-content > * {
+    display: inline;
+}
+
+.chatlog__reference-edited-timestamp {
+    margin-left: 0.25em;
+    font-size: 0.8em;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__attachment-container {
+    height: 40px;
+    width: 100%;
+    max-width: 520px;
+    padding: 10px;
+    border: 1px solid;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.chatlog__attachment-icon {
+    float: left;
+    height: 100%;
+    margin-right: 10px;
+}
+
+.chatlog__attachment-icon > .a {
+    fill: #f4f5fb;
+    d: path("M50,935a25,25,0,0,1-25-25V50A25,25,0,0,1,50,25H519.6L695,201.32V910a25,25,0,0,1-25,25Z");
+}
+
+.chatlog__attachment-icon > .b {
+    fill: #7789c4;
+    d: path("M509.21,50,670,211.63V910H50V50H509.21M530,0H50A50,50,0,0,0,0,50V910a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50h0V191Z");
+}
+
+.chatlog__attachment-icon > .c {
+    fill: #f4f5fb;
+    d: path("M530,215a25,25,0,0,1-25-25V50a25,25,0,0,1,16.23-23.41L693.41,198.77A25,25,0,0,1,670,215Z");
+}
+
+.chatlog__attachment-icon > .d {
+    fill: #7789c4;
+    d: path("M530,70.71,649.29,190H530V70.71M530,0a50,50,0,0,0-50,50V190a50,50,0,0,0,50,50H670a50,50,0,0,0,50-50Z");
+}
+
+.chatlog__attachment-filesize {
+    color: #72767d;
+    font-size: 12px;
+}
+
+.chatlog__attachment-filename {
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__reference-symbol {
+    border-color: #4f545c;
+}
+
+.chatlog__reference {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link {
+    color: #b5b6b8;
+}
+
+.chatlog__reference-link:hover {
+    color: #ffffff;
+}
+
+.chatlog__reference-edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__attachment-container {
+    background-color: #2f3136;
+    border-color: #292b2f;
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_4ce3e933257bcd4b1be9f2ada977dc8f-248B1.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Welcome To The Velvet Station: Amor Fati</div>
+        <div class="preamble__entry">The Red Velvet - 2045? / greenhouse</div>
+
+
+            <div class="preamble__entry preamble__entry--small">
+Before 21-Jun-21 12:00 AM            </div>
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">12-May-21 09:38 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="842032957703061515" id="message-842032957703061515">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">A small greenhouse area of the Red Velvet, split into two sections: one provides sustainable food for the crew, while the other is for &#39;unique&#39; experimentation. The second one in particular looks woefully barren...
+
+BGM: <a href="https://www.youtube.com/watch?v=EC3TNcnzVpU">https://www.youtube.com/watch?v=EC3TNcnzVpU</a></span>
+
+                        </div>
+                    </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+                                        <div class="chatlog__embed-author">
+
+                                                <span class="chatlog__embed-author-name">
+                                                        <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UCEB24Vyg6rpQ51s8vRD1bnQ">NoireSama</a>
+                                                </span>
+                                        </div>
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=EC3TNcnzVpU">
+                                                    <div class="markdown preserve-whitespace">[Arknights OST] holiday</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown preserve-whitespace">Extracted and edited from in-game file, all copyrights goes to HyperGryph.
+
+Note: this is NOT the original files in the game, NOR released by HyperGryph officially. 
+
+download link for all soundtracks (including unreleased ones) : <a href="https://arknightsost.nbh.workers.dev/">https://arknightsost.nbh.workers.dev/</a>
+
+For soundtracks that are not released on EN server of the game (released on C...</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/maxresdefault-27113.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/maxresdefault-27113.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+        <div class="chatlog__reference-symbol">
+        </div>
+        <div class="chatlog__reference">
+                <span class="chatlog__reference-unknown">
+                    Original message was deleted.
+                </span>
+        </div>
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">12-May-21 09:55 AM</span>
+
+            <div class="chatlog__message " data-message-id="842037272345837608" id="message-842037272345837608">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pinned a message.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 07:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="856315772293218364" id="message-856315772293218364">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hana was in the greenhouse, tending to her flowers.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 07:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="856317631573000233" id="message-856317631573000233">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lucius peeped in. &quot;Make sure you don&#39;t break anything in the storm!&quot; Chipper as ever, even now.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 07:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="856319004872409128" id="message-856319004872409128">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah, I wo- wait... storm?!&quot; Hana ran to the doorway and looked around. &quot;L-Lucius?!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 07:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="856319158375415808" id="message-856319158375415808">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Check your PDA~!&quot; And he was gone. 
+Shpooky.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 07:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856319256312021023" id="message-856319256312021023">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Mmmgh..!&quot; The flower is spooked. She checked her PDA.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856320765443178536" id="message-856320765443178536">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Drat!...&quot; Hana began gathering all the plants in pots, putting them on the floor for safety.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="856323465715646484" id="message-856323465715646484">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The ship shook. Some of the pots toppled over, spilling their soil bounty.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="856323611265335297" id="message-856323611265335297">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;NOO!!&quot; Hana whimpered, trying to scoop up the soil. No no no no! This is no good! She was working as quickly as she could.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856323654047367168" id="message-856323654047367168">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;My orchids!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="856326279338786826" id="message-856326279338786826">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>(1) new messages</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="856326851869933578" id="message-856326851869933578">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Ah!!&quot; Hana was spooked by the ping. She checked her phone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/1475c176ba5584a231d1caaec9bd0ac0-75DC1.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="[ADMIN] F.Burroughs#0000" data-user-id="856327032908808232" style="">[ADMIN] F.Burroughs</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jun-21 08:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="856327033935101992" id="message-856327033935101992">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hana, come to the Main Deck. We can rebuild later.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/bb80fc57cea92e85ba524650b03b0c30-5B1CE.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#119982;&#120005;&#120007;&#119998;&#120003;&#119892;&#119998;&#120003;&#119892; &#119861;&#120001;&#119900;&#120008;&#120008;&#119900;&#120002;#0000" data-user-id="856327032908808232" style="">&#119982;&#120005;&#120007;&#119998;&#120003;&#119892;&#119998;&#120003;&#119892; &#119861;&#120001;&#119900;&#120008;&#120008;&#119900;&#120002;</span>
+
+            <span class="chatlog__bot-tag">BOT</span>
+
+        <span class="chatlog__timestamp">20-Jun-21 08:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="856327156895842325" id="message-856327156895842325">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Oh dear... okay, I&#39;m coming</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="856327387587018753" id="message-856327387587018753">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Hana would slip on her backpack and run off.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331208652488706" id="message-856331208652488706">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Lucius would lead the party over here. &quot;Now, I swear there was a shelter room somewhere around here.&quot;
+The window here provided another <em>ugly</em> view of the storm... and the 5 or so bodies gnashing at them from behind it.</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 08:34 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331343071150080" id="message-856331343071150080">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cat didnt like that very much</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331492636229644" id="message-856331492636229644">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jotaro was taken aback by the sight, but he was more angry than anything. ..What the hell&#39;s going to happen to the others?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331567025881089" id="message-856331567025881089">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nina was shaking. &quot;I just wanted a university credit dammit.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331692284969001" id="message-856331692284969001">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Roland was more focused on the bodies gnashing at the them, still currently trying to be a security guard and make sure they weren&#39;t gonna get turned into food. &quot;you better find that shelter fast!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331740062154783" id="message-856331740062154783">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Madeline is also shaking, trying hard not to gag. god why did she pick this specific job</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331777617166366" id="message-856331777617166366">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda is not happy, and had slipped over to stand by Link. No matter how much he annoyed her, he was familiar and grounding.
+&quot;What about everyone else.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="856331874967879690" id="message-856331874967879690">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nina was hyperventilating, hugging herself tight.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332008270987264" id="message-856332008270987264">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link took a breath. He couldn&#39;t think about that, not right now. The thought that Flynn could be just as much a threat as whatever those were wasn&#39;t going to help them. He looked to Lucius, hiding his confusion.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332139779326002" id="message-856332139779326002">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny awkwardly shuffled in, gasping. &quot;PIWI!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332171404115989" id="message-856332171404115989">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cat put her hand on Nina&#39;s shoulder &quot;We will be safe. Were going to the shelter&quot; she reassured Nina, even though she cant reassure herself</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332245522841612" id="message-856332245522841612">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I-... he&#39;s still in the engineering room!!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332482554757140" id="message-856332482554757140">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;i... should.. should i get piwi for you?&quot; please, anything to get what happened off her mind</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332871551680533" id="message-856332871551680533">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I-I gotta save my baby! I can&#39;t let him get hurt!&quot; Jenny was in a panic.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="856332915936067614" id="message-856332915936067614">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hold on... got it!&quot;
+And just like that, the boat <em>lurched</em> forward. The party would collectively slam <em>violently</em> against the glass.
+...Was it cracking?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333008369483787" id="message-856333008369483787">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nina bounced, snapping out of her panic attack</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856333052662120488" id="message-856333052662120488">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Her nose was bleeding.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333129354182676" id="message-856333129354182676">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Before Jenny could speak more, she felt her weight suddenly shift and <em><strong>slam</strong></em> super hard into the glass. That was gonna leave a nasty mark on her forehead.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333216360169512" id="message-856333216360169512">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><em>bonk</em>
+&quot;For the love of...&quot; Zelda was going to be feeling that for a hot second, already feeling a bruise forming.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333253165580308" id="message-856333253165580308">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cat whacked against it.  That hurt.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333296228499466" id="message-856333296228499466">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jotaro&#39;s built like a brick shithouse, but he regains balance pretty quick after lovetapping the glass.
+
+&quot;Tch..Good grief..&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333353434480660" id="message-856333353434480660">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Madeline gasped as her side was slammed into the window,  oh god lets hope nothing is dislocated</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333430990831627" id="message-856333430990831627">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Roland would get tossed into the glass, grunting as he landed against it. He&#39;s surprisingly bulky though considering he&#39;s still moving. &quot;Fuck..Ow..&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333456693657610" id="message-856333456693657610">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link tried to cushion anyone behind him, but he only has the coverage of a tiny twink. It&#39;s a rough slam, but he does this for fun all the time, he&#39;s alright.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333586809487371" id="message-856333586809487371">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just a &#39;lil lovetap. ..Damn, his shoulder&#39;s sore.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333715332530196" id="message-856333715332530196">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny hissed. Thank god she had such huge pain tolerance, but it still hurt.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333752845467669" id="message-856333752845467669">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...A big wave was headed towards them. Let&#39;s hope it didn&#39;t-
+Crack. <em>Crack.</em>
+And in came a <em>biblical</em> torrent of the sea foam.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="856333919850332170" id="message-856333919850332170">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She suddenly eyed the glass, but- OH FUCK. 
+
+&quot;GUYS R-BBHHGGH!!&quot; She got lost in the water.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334195445465119" id="message-856334195445465119">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;sh-&quot; Madeline clamped her mouth shut, but the impact of the water made her gasp. oh shit-</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:46 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334331668332575" id="message-856334331668332575">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda reached for Link as the water slammed into them. No!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334359196074024" id="message-856334359196074024">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;FUCK NO-&quot; He was caught into the water with an audible grunt, trying to hold himself up but couldn&#39;t as he was taken into it</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334413150683146" id="message-856334413150683146">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Wet Nina Noises</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856334433455308820" id="message-856334433455308820">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">No not like that</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334491106148352" id="message-856334491106148352">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jotaro tried to grab anything that was bolted down. To make it back to the door- <em>To get back to-</em>
+
+But this wasn&#39;t something he was prepared for. It came too fast.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334521719586816" id="message-856334521719586816">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...The breakfast burrito would float away.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334527978930206" id="message-856334527978930206">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">It might have been fun to surf on, in a different scenario. This was not a fun surfing time. This was glass and chaos and heavy clothes and nothing he can do to help. Link&#39;s just too far to reach anyone, and that makes him panic more than anything else.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334557748789288" id="message-856334557748789288">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">NOT THE BURRITO</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334641938169886" id="message-856334641938169886">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">First Ilia died, but even worse, Nina lost her burrito...</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⭐" title="⭐" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2b50-412B1.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334648488886302" id="message-856334648488886302">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">As would the dozens of humanoid monsters and spirits trying to grope at them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2ae9e8655a6a4b896d2f6265868c53ee-40B22.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#5871" data-user-id="853840738088648735" style="color: rgb(249,74,255)">stardew vallun</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334806618734601" id="message-856334806618734601">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((If I may have the floor, soon?))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="856334957437255721" id="message-856334957437255721">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Go for it!))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856334978455699476" id="message-856334978455699476">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(( <img class="emoji " alt="🙂" title="🙂" src="https://twemoji.maxcdn.com/2/72x72/1f642.png"> ))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="856335007919898635" id="message-856335007919898635">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Uhoh</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2ae9e8655a6a4b896d2f6265868c53ee-40B22.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#5871" data-user-id="853840738088648735" style="color: rgb(249,74,255)">stardew vallun</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:52 PM</span>
+
+            <div class="chatlog__message " data-message-id="856335852396085258" id="message-856335852396085258">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">With the influx of seafoam came a flood into the water, <em>pulling</em> you out into the open sea. Something drags you below the waves, and for a minute, the surface seems so far...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856335880972927006" id="message-856335880972927006">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((pause for reaction.))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336065568571422" id="message-856336065568571422">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">You swore you could hear Lucius calling out to you. But at this rate, it seemed too far...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336113437638686" id="message-856336113437638686">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny tried to claw her way through the water. She flexed her muscles, but to no avail. She took in water to her lungs, bubbles foaming from her mouth. Vision going dark.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336277766930453" id="message-856336277766930453">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda struggles against being pulled out, not sure what would become of them out in the open ocean. (Though, with this was staying any better?)
+Still, she was pulled out into the sea....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336374851305472" id="message-856336374851305472">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nima always knew she wasn&#39;t gonna live long. She always hoped she&#39;d die for something worthwhile though. Not like this...
+
+<em>I never even found him. What kind of man was he? Would he have been proud of me? All I have to remember you is this cloak... Its all wet now. I&#39;m sorry dad...</em>
+
+She closes her eyes...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336444498247682" id="message-856336444498247682">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Roland was trying to claw out, he couldn&#39;t bear to have this feeling dragging him down again. This wasn&#39;t good, this wasn&#39;t at all good. 
+<em>No no no no COME ON</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336627076300820" id="message-856336627076300820">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The salt stung angrily at his eyes, and Link it took too long to figure out which way was up. His chest burns at the attempt to keep air in his lungs. Is everyone gone, could he really not help one person?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336629715173376" id="message-856336629715173376">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Cat tried and tried to swim her way up. Even with her strength, she fails. She got thrown around within the water as she got dragged. Eventually, as she got tired, stopped struggling so hard, only to struggle less hard</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 08:56 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336699415855114" id="message-856336699415855114">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Madeline gasped out her air way too quickly. i know she describes depression as a deep ocean but Madeline never expected  to actually experience <em>this</em>. god she was such an idiot for applying for this job...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="856336870992379904" id="message-856336870992379904">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Too far..<em>Too far..</em>
+
+If he could get away, he&#39;d be able to swim..He could even hold his breath for a while.. He was kicking, pounding, doing whatever he could.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2ae9e8655a6a4b896d2f6265868c53ee-40B22.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#5871" data-user-id="853840738088648735" style="color: rgb(249,74,255)">stardew vallun</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 08:59 PM</span>
+
+            <div class="chatlog__message " data-message-id="856337504482623521" id="message-856337504482623521">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Just as your bodies start giving out, however, you feel a presence...
+
+And then, a <em>power</em> under you. As if the depths themselves parted, you&#39;re pulled deeper, falling bonelessly onto a solid, <em>wet</em> surface. But you can breathe. Looking up reveals a solid pocket of air within the open sea, the ship bouncing quietly in the water just a short ways away...
+
+And you aren&#39;t alone.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856337532177350668" id="message-856337532177350668">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">((Az, if you&#39;d please?))</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="856337999927050270" id="message-856337999927050270">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...There&#39;s a grunt behind you. And a <em>kick</em> in your collective sides, courtesy of a verdant-colored boot- clearly armor of some kind.
+<strong>&quot;Get the fuck up.&quot;</strong>
+The voice sounded gruff. Weathered.
+...<em>Irish?</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856338169083330570" id="message-856338169083330570">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(Pause for reaction.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338248920858656" id="message-856338248920858656">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny fell to the ground and coughed, hacking up sea water when a kick to the burn on her side made her jolt. &quot;AHH!&quot; She couldn&#39;t feel much there, but it was enough to make her panic again and stand, soaking wet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338313216786463" id="message-856338313216786463">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nina yelped. Getting up. She coughed, before looking around. &quot;What the... What the fuck?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338361558892544" id="message-856338361558892544">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jotaro coughed, struggling to refill his lungs before standing to his feet. Miraculously, his hat(?) stayed on through that ordeal..?
+
+&quot;......&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338402717466666" id="message-856338402717466666">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda took a moment to process the fact she wasn&#39;t laying dead in the water, and processing the fact someone had kicked her. &quot;Who are you?&quot; She asked, not bothering to stand up, just yet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338638308245506" id="message-856338638308245506">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Roland got himself up, groaning. &quot;We just fucking got thrown into the ocean bastard, at least kick softer..&quot; he muttered out</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338813189881866" id="message-856338813189881866">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Madeline coughs and grunts at the kick, shakily pushing herself of the floor. she wasnt dead..? she stared up at the air pocket and then at the person(?) &quot;who....&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="856338897796333591" id="message-856338897796333591">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She got up in a hurry, getting into a makeshift ninja pose. &quot;What? Huh?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="856339197672685568" id="message-856339197672685568">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link curled on the kick, still gathering his breath and senses. People we talking. There were moans, people were alive. Good. Good good. His vision was still blurred from the salt, as one of his ear caps dangled unhappily from it&#39;s peircings, but he could see people. Once the number of blobs were accounted for and his vision cleared, he looked for the source of grumpy feet.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340091864612895" id="message-856340091864612895">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Clack. <em>Clack.</em>
+The verdant armor continued upward, flanked by gold buttons and emblems of various shapes and sizes, leading up to a <em>glorious</em> black cape, and... skeletal hands?
+Even his head appeared to be that of a skull, behind that great helmet and large locks of fire-orange hair.
+<strong>&quot;Far from home, ain&#39;t ye? Questions come <em>after</em> you&#39;ve coughed everythin&#39; up.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856340121251348501" id="message-856340121251348501">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">...Yep. Definitely Irish.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856340488181645362" id="message-856340488181645362">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">He cleared his throat. (Did he have a throat? Curious.)
+<strong>&quot;My name... is <em>Dagda.</em> And you lot are?&quot;</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 09:11 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340565351202827" id="message-856340565351202827">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;N-Nina Noi- er, Nina Hill.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340698194509844" id="message-856340698194509844">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Roland waved a tad, groaning a bit as he did since he was in pain. &quot;Name&#39;s Roland. I&#39;m just a washed up security guard for the ship that just got breached..&quot; He said plainly</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340726693232641" id="message-856340726693232641">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Daga-wha??&quot; Jenny was so confused. She rubbed her side and shrugged. &quot;J-Jenny Jones.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340857003048981" id="message-856340857003048981">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Zelda. We&#39;re also in desperate need of an explanation.&quot; 
+Zelda looked him over. Was... this a persona that grabbed them?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340879752953876" id="message-856340879752953876">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">she coughs again as she tried to stand again &quot;M-Madeline... reid...</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="856340964846469150" id="message-856340964846469150">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">She coughed up the rest of her water &quot;Cat. Call me Cat.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="856341089904623656" id="message-856341089904623656">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;..Jotaro Kujo.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="856341480263909417" id="message-856341480263909417">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link looked over to the . . . Man? Monster? Dagda? It takes a moment, but Link moves his hands, slowly but precisely to sign out his name. L-I-N-K.  As if used to that not being enough, he makes two rings with his fingers and thumbs, hooking them together.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="856342716010463263" id="message-856342716010463263">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Dagda chuckled coldly.
+<strong>&quot;Cute names... for people about t&#39;perish.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343053354663946" id="message-856343053354663946">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What are you talking about?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343092923072512" id="message-856343092923072512">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Well jesus! Thanks for that!&quot; Jenny was not having it. She nearly drowned!</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343241178742784" id="message-856343241178742784">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">oh... okay, she&#39;s going to die still any way... &quot;just do it already then...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343311706095626" id="message-856343311706095626">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Or uhhh we could NOT do that?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343500258148352" id="message-856343500258148352">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link&#39;s eyes narrowed, immediately putting his shield in front of him. Not a lick of fear on him, not visibly.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="856343752524562473" id="message-856343752524562473">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Can&#39;t you at least explain what&#39;s going on?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344540720922625" id="message-856344540720922625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Dagda <em>cracked</em> his knuckles. Ghastly noise.
+<strong>&quot;Let me finish. About t&#39;perish...&quot;</strong> 
+The scenery around them darkened slightly. Dagda appeared to light a small flame. No. <em>Eight</em> of them.
+<strong>&quot;<em>Unless</em> we make a deal.&quot;</strong></span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 09:27 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344715788288000" id="message-856344715788288000">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;..A deal?&quot; Roland asked, hands stuffed into his pants pockets. &quot;Care to...elaborate on that deal at all?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344745697607711" id="message-856344745697607711">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;What kind of deal?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344800517029938" id="message-856344800517029938">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Oh you&#39;re one of those types. Giving us an offer we can refuse. Boney dick.&quot; She was crying a bit, but keeping as brave a face as she can.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344833617559552" id="message-856344833617559552">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A deal?? This is some whack bull. What kinda deal are you talking about?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="856344959980535838" id="message-856344959980535838">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Hey. Hear him out.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="856345073443799050" id="message-856345073443799050">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link blinked, staring at the flames. He didn&#39;t move, not in case something was going to attack them.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:29 PM</span>
+
+            <div class="chatlog__message " data-message-id="856345090850553898" id="message-856345090850553898">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;a deal...&quot; she pauses. &quot;ddepends, i guess...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="856345463237902336" id="message-856345463237902336">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A deal?... What is it?&quot; Cat blinked a few times</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:32 PM</span>
+
+            <div class="chatlog__message " data-message-id="856345742658633778" id="message-856345742658633778">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Oh, you can refuse it all you want. &#39;Course, that just means I dump you back int&#39;the sea and leave your buddies over there for dead. Or...&quot;</strong>
+The flames glowed.
+<strong>&quot;You can <em>take a fraction of my power.</em> Fight back against &#39;em.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="856345990147866624" id="message-856345990147866624">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;You gotta be kidding me.&quot; Jenny groaned, running a hand through her hair. &quot;Of all the weird shit to put my life on the line taking a deal from Skeletor is new.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⭐" title="⭐" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2b50-412B1.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="856346368946602014" id="message-856346368946602014">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;and then what do you want from us...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="856346457367380029" id="message-856346457367380029">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I&#39;ll take your deal.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="KEKW" title="KEKW" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/729506430301765752-421A6.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:35 PM</span>
+
+            <div class="chatlog__message " data-message-id="856346633977593877" id="message-856346633977593877">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link rolled the words around in his head. Put that way, it wasn&#39;t much of a choice. He held his open palm over his sheild. Give please.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="856346792664629298" id="message-856346792664629298">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;A fraction of your power...?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:36 PM</span>
+
+            <div class="chatlog__message " data-message-id="856346903143120936" id="message-856346903143120936">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;You... become my <em>Godslayers</em>. Wherever you go from here... you must see the journey through to the bitter end. Gods, demons... all I deem enemies will fall by <em>your</em> hand.&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856346957202325545" id="message-856346957202325545">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The flames glowed again, at Zelda&#39;s remarks.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347028845756456" id="message-856347028845756456">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;...That was fast.&quot; Roland muttered, looking at Jotaro in confusion. &quot;..but alright. I guess I gotta accept, not like we have a choice...&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347096482185216" id="message-856347096482185216">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Fuck it, lets do it.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347180767379507" id="message-856347180767379507">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Aight. I&#39;ll do it. If it saves me and the ship.&quot; Cat nods to Skeletor</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347259327610920" id="message-856347259327610920">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;.....Yeah. Alright. If it means the ship can be saved, and the others. I&#39;ll do it.&quot; Jenny nodded.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347327596593212" id="message-856347327596593212">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda can&#39;t say she was fond of that phrasing.
+Still, she held her hand out.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347545658851338" id="message-856347545658851338">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;g-godslayers huh...&quot; she looked around at everyone accepting and then up at the boat &quot;why the hhell not, it cant get worse that this... I&#39;ll do it.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347566877442099" id="message-856347566877442099">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;And they won&#39;t be hurt by this?&quot; The people on the ship..</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="856347987890798604" id="message-856347987890798604">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;They will be just fine.&quot;</strong>
+...Something about that tone didn&#39;t sound right, but did they really have a choice?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="856348718554021908" id="message-856348718554021908">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;..Good grief..&quot; He tilted his hat down, before holding out his hand. <em>Jolyne...She could handle herself.</em></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="856349882448216065" id="message-856349882448216065">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The flames would enter their hands, coursing through their veins.
+...Their bodies would <em>surge</em> with newfound power. <em>Strength.</em> And maybe... a new companion?</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856349904691527701" id="message-856349904691527701">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">(INTRO YOUR PERSONAS HERE.)</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="856350256828645377" id="message-856350256828645377">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Nina has a persona now, its pretty poggers.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⭐" title="⭐" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2b50-412B1.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="856350271072632854" id="message-856350271072632854">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Robin Hood baybay</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="856350554330103818" id="message-856350554330103818">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny jolted as the power entered her body. She shivered and made a lot of weird noises, almost scared her choice was a trick. 
+
+But, there was a tap on the shoulder. Jenny turned around. &quot;HOLY SHIT!!&quot; There stood an armored cowboy mounted on a fiery steed. The cowboy looked down at Jenny, cocking his hat. &quot;Hey there, kid. Name&#39;s Ned Kelly.&quot; 
+
+Jenny&#39;s eyes glittered. &quot;Whaaaaat the fuuuuck?!&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 09:54 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:53 PM</span>
+
+            <div class="chatlog__message " data-message-id="856351075716038686" id="message-856351075716038686">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">An anvil would first appear before Roland, said anvil quiet before a loud clang of a hammer against metal could be heard, emerging from a plume of smoke being a man who&#39;s face hidden by a iron helmet. The man seeming human minus pieces resembling that of a robot, and in his right hand the hammer that strikes iron. &quot;<em>So you&#39;re Roland huh? Well my forge is open to you, better use it well.</em>&quot;
+
+&quot;...you wanna give me a name?&quot; Roland asked.
+
+&quot;<em>...Ugh, my name is Hephaestus. I am the god of the forge, just use it responsibly jack ass.</em>&quot; 
+
+&quot;Alright alright, no need to be so harsh.&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="856351431644938250" id="message-856351431644938250">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">a figure formed infront of Madeline, a copy of her. she does not look happy &quot;You... im just here to keep you from killing yourself, like that little voice in your head keeps telling you to do yourself.&quot;
+
+&quot;i- what?&quot;
+
+&quot;i am your doppelganger, and <em>you</em> are out of your depth.&quot;</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 10:01 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856351759977938984" id="message-856351759977938984">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jotaro felt the power. . . And heard a distant sound, getting closer. 
+
+A..whinny? Across the ground, water rippled as the source took visible form. A pure white horse with wide avian wings galloped towards him, stopping just a few feet short.
+
+He..was never a horse guy. ...After a neigh, he stepped forward and patted the creature&#39;s head. &quot;..Your name is..Pegasus?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856351834029031456" id="message-856351834029031456">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Strange gold dust would fly around Cat, a weird shadow dancing around her. <span class="pre pre--inline">Cat! I&#39;ve found you! Finally!</span>
+
+She jolts around, trying to follow the shadow &quot;What?? Who are you?!&quot;
+
+The shadow fades into a human and stops spinning <span class="pre pre--inline">Why, I&#39;m Peter Pan! Who else is as charming as I?~</span></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 09:56 PM</span>
+
+            <div class="chatlog__message " data-message-id="856351873761280011" id="message-856351873761280011">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Zelda clenched her hand, letting her head hang as the power poured through her. In a moment, it reformed in front her. A graceful figure with golden plates of armor  and large white wings.
+
+Wings that dropped feathers to the floor, that Zelda picked up and looked over curiously.
+
+<em>&quot;They&#39;re pretty cool looking, aren&#39;t they?&quot;</em> the being spoke, with a masculine voice, and no small amount of energy. 
+
+&quot;I suppose so.&quot; She gave him a fascinated look. Was this from her.
+
+<em>&quot;I&#39;m Icarus, by the way! Lookin&#39; forward to working with you!&quot;</em></span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 09:59 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="856353052272623636" id="message-856353052272623636">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">The first thing Link noticed, even more than the feeling of his body feeling like he was getting shocked again, was the smell of peaches. It made him hungry, and maybe made him feel less . . . Zappy. The peachy smell was a young man, even smaller than himself, sitting on a giant peach. He wore a simple garb covering chainmail, and a small sword. He was embroidered with a dog, a pheasant, and an oni, with his hair done into a topknot. Link tilted his head, but when the young man bowed, Link did too. &quot;I am Momotaro.&#39;&#39; He greeted, and Link nodded back. &quot;I will be at your side when you need aid.&#39;&#39; 
+
+Friends were nice. Maybe Momotaro would give him some of that peach.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="856353512136507442" id="message-856353512136507442">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Okay forreal now. 
+
+Nina was... Taken aback at the tall figure before her.
+
+&quot;Tally-ho! Nina come, we must fell the evildoers, yes?&quot;
+
+&quot;Wh-wha--?&quot;
+
+&quot;THE EVILDOERS! WE MUST FELL THEM TOGETHER!&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="856354275189981225" id="message-856354275189981225">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Clap clap. <strong>&quot;Are you done?&quot;</strong></span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="856355187769999370" id="message-856355187769999370">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;no but i can continue this later&quot;
+
+&quot;what did  i do??&quot;
+
+&quot;<em>later</em>&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="856355324604710953" id="message-856355324604710953">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I suppose so.&quot; Zelda is still absolutely fascinated by the feather. What a wonderful research opportunity at least.....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="856355500094783519" id="message-856355500094783519">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I...I think so?&quot; Peter Pan was giggling like a school boy behind her as he messed poked her</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:11 PM</span>
+
+            <div class="chatlog__message " data-message-id="856355638597910528" id="message-856355638597910528">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;i&#39;m satisfied.&quot; Roland muttered, hands back into his pockets and glancing to Dagda. &quot;Anything else you gotta say?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:12 PM</span>
+
+            <div class="chatlog__message " data-message-id="856355886635941888" id="message-856355886635941888">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Jenny snapped out of her trance looking up at her new.. companion. She glanced to Dagda. &quot;Ah.. y-yeah. I&#39;m done. I guess...&quot; Ned Kelly was stoic as ever. Not much to say.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="856356214203875368" id="message-856356214203875368">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Pegasus didn&#39;t really speak, but Jotaro knew what it thought anyway. &quot;....What&#39;s our first target?&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/ea9ab974da062d4b0b65756568f333b9-0AD21.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i&#39;m here to kill CHAOS</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="856356889590628393" id="message-856356889590628393">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace"><strong>&quot;Save your friends.&quot;</strong>
+And Dagda disappeared into the darkness.
+...You were losing consciousness? Wha-?</span>
+
+                                <span class="chatlog__edited-timestamp" title="20-Jun-21 10:16 PM">(edited)</span>
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c5d3b104492c2d40cfc5b06b553cc0b3-2955E.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Princess Kaula#2610" data-user-id="222485311794577408" style="color: rgb(238,22,34)">Brain Impronkor</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="856357265149657099" id="message-856357265149657099">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">There was a lot of fainting today....</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/3e73552b92b9bcf8957dd1bb65b8c1f2-71F39.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">UNIONIZE</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="856357420183322625" id="message-856357420183322625">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;I just wanna stay awake for...5...minutes&quot; Roland was starting to pass out</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/c974170f2a5e2fe97b3cfb4993c02c82-41CAF.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sharktoothedgrin#8889" data-user-id="218092429553827842" style="color: rgb(155,89,182)">Dum Dum</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="856357687708090368" id="message-856357687708090368">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Thunk</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/a_da27b855ca8c18a2e5ff04538052bac0-A06B3.gif" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Silver Berry#3787" data-user-id="324772506126778370" style="color: rgb(155,89,182)">that is a **s*(n)ake</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="856357720898404373" id="message-856357720898404373">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">great, this may be the worst day ever.... out she goes</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/840ff63aa6f79526cb6d3d42663c1de6-1C24D.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Friendly Haunted MiniFridge</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="856357762228682784" id="message-856357762228682784">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Link frowned, crumpling back to the floor. He didn&#39;t even get to ask for any peach.</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="KEKW" title="KEKW" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/729506430301765752-421A6.png">
+                                <span class="chatlog__reaction-count">3</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/120f6dc252fb390935dce1e872c9a68c-A7892.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="&#127863;⎜GLUTTONY.EXE⎜&#127863;#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Long Jacket Johnson||❤</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="856358065276190740" id="message-856358065276190740">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Wait, can&#39;t you tell... us... more...?&quot; Jenny felt light headed. She fell back onto the ground. Out like a light.</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/d1d931f4432bb32591209650168395e1-2C3A4.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="sadbat cifer#8668" data-user-id="172478195017187330" style="color: rgb(155,89,182)">gacha slave</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="856359059446693898" id="message-856359059446693898">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">&quot;Y..are...y..are...daz..e..&quot;</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/e95d584405c3069d30f9944468b3b145-23840.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Lightning Fast Furry! [&#119825;&#119822;&#119816;]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">knockoff assassin miku</span>
+
+
+        <span class="chatlog__timestamp">20-Jun-21 10:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="856359075134308393" id="message-856359075134308393">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">guess I&#39;ll die &#175;\<em>(ツ)\</em>/&#175;</span>
+
+                        </div>
+                    </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="⭐" title="⭐" src="Welcome%20To%20The%20Velvet%20Station_%20Amor%20Fati%20-%20The%20Red%20Velvet%20-%202045_%20-%20greenhouse%20%5B841864403254771712%5D%20%28before%202021-06-21%29.html_Files/2b50-412B1.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+            <div class="chatlog__message " data-message-id="856359094180380672" id="message-856359094180380672">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Not really tho</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="856359144360902657" id="message-856359144360902657">
+                    <div class="chatlog__content">
+                        <div class="markdown">
+                            <span class="preserve-whitespace">Fortunately,  she merely passes out</span>
+
+                        </div>
+                    </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 156 message(s)</div>
+</div>
+
+</body>
+
+</html>

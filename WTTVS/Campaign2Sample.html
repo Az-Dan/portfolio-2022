@@ -1,0 +1,3505 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Welcome To The Velvet Station - shinjuku-tunnels</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width">
+
+    <style>
+        /* General */
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-300.woff);
+    font-weight: 300;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-400.woff);
+    font-weight: 400;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-500.woff);
+    font-weight: 500;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-600.woff);
+    font-weight: 600;
+}
+
+@font-face {
+    font-family: Whitney;
+    src: url(https://cdn.jsdelivr.net/gh/Tyrrrz/DiscordFonts@master/whitney-700.woff);
+    font-weight: 700;
+}
+
+body {
+    font-family: "Whitney", "Helvetica Neue", Helvetica, Arial, sans-serif;
+    font-size: 17px;
+}
+
+a {
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
+
+img {
+    object-fit: contain;
+}
+
+.markdown {
+    max-width: 100%;
+    white-space: pre-wrap;
+    line-height: 1.3;
+    overflow-wrap: break-word;
+}
+
+.spoiler {
+    width: fit-content;
+}
+
+.spoiler--hidden {
+    cursor: pointer;
+}
+
+.spoiler-text {
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-text {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler--hidden .spoiler-text::selection {
+    color: rgba(0, 0, 0, 0);
+}
+
+.spoiler-image {
+    position: relative;
+    overflow: hidden;
+    border-radius: 3px;
+}
+
+.spoiler--hidden .spoiler-image {
+    box-shadow: 0 0 1px 1px rgba(0, 0, 0, 0.1);
+}
+
+.spoiler--hidden .spoiler-image img {
+    filter: blur(44px);
+}
+
+.spoiler--hidden .spoiler-image:after {
+    content: "SPOILER";
+    color: #dcddde;
+    background-color: rgba(0, 0, 0, 0.6);
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-weight: 600;
+    padding: 0.5em 0.7em;
+    border-radius: 20px;
+    letter-spacing: 0.05em;
+    font-size: 0.9em;
+}
+
+.spoiler--hidden:hover .spoiler-image:after {
+    color: #fff;
+    background-color: rgba(0, 0, 0, 0.9);
+}
+
+.quote {
+    margin: 0.1em 0;
+    padding-left: 0.6em;
+    border-left: 4px solid;
+    border-radius: 3px;
+}
+
+.pre {
+    font-family: "Consolas", "Courier New", Courier, monospace;
+}
+
+.pre--multiline {
+    margin-top: 0.25em;
+    padding: 0.5em;
+    border: 2px solid;
+    border-radius: 5px;
+}
+
+.pre--inline {
+    padding: 2px;
+    border-radius: 3px;
+    font-size: 0.85em;
+}
+
+.mention {
+    border-radius: 3px;
+    padding: 0 2px;
+    color: #7289da;
+    background: rgba(114, 137, 218, .1);
+    font-weight: 500;
+}
+
+.emoji {
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 0.06em;
+    vertical-align: -0.4em;
+}
+
+.emoji--small {
+    width: 1em;
+    height: 1em;
+}
+
+.emoji--large {
+    width: 2.8em;
+    height: 2.8em;
+}
+
+/* Preamble */
+
+.preamble {
+    display: grid;
+    margin: 0 0.3em 0.6em 0.3em;
+    max-width: 100%;
+    grid-template-columns: auto 1fr;
+}
+
+.preamble__guild-icon-container {
+    grid-column: 1;
+}
+
+.preamble__guild-icon {
+    max-width: 88px;
+    max-height: 88px;
+}
+
+.preamble__entries-container {
+    grid-column: 2;
+    margin-left: 0.6em;
+}
+
+.preamble__entry {
+    font-size: 1.4em;
+}
+
+.preamble__entry--small {
+    font-size: 1em;
+}
+
+/* Chatlog */
+
+.chatlog {
+    max-width: 100%;
+}
+
+.chatlog__message-group {
+    display: grid;
+    margin: 0 0.6em;
+    padding: 0.9em 0;
+    border-top: 1px solid;
+    grid-template-columns: auto 1fr;
+}
+
+.chatlog__author-avatar-container {
+    grid-column: 1;
+    width: 40px;
+    height: 40px;
+}
+
+.chatlog__author-avatar {
+    border-radius: 50%;
+    height: 40px;
+    width: 40px;
+}
+
+.chatlog__messages {
+    grid-column: 2;
+    margin-left: 1.2em;
+    min-width: 50%;
+}
+
+.chatlog__author-name {
+    font-weight: 500;
+}
+
+.chatlog__timestamp {
+    margin-left: 0.3em;
+    font-size: 0.75em;
+}
+
+.chatlog__message {
+    padding: 0.1em 0.3em;
+    margin: 0 -0.3em;
+    background-color: transparent;
+    transition: background-color 1s ease;
+}
+
+.chatlog__content {
+    font-size: 0.95em;
+    word-wrap: break-word;
+}
+
+.chatlog__edited-timestamp {
+    margin-left: 0.15em;
+    font-size: 0.8em;
+}
+
+.chatlog__attachment {
+    margin-top: 0.3em;
+}
+
+.chatlog__attachment-thumbnail {
+    vertical-align: top;
+    max-width: 45vw;
+    max-height: 500px;
+    border-radius: 3px;
+}
+
+.chatlog__embed {
+    display: flex;
+    margin-top: 0.3em;
+    max-width: 520px;
+}
+
+.chatlog__embed-color-pill {
+    flex-shrink: 0;
+    width: 0.25em;
+    border-top-left-radius: 3px;
+    border-bottom-left-radius: 3px;
+}
+
+.chatlog__embed-content-container {
+    display: flex;
+    flex-direction: column;
+    padding: 0.5em 0.6em;
+    border: 1px solid;
+    border-top-right-radius: 3px;
+    border-bottom-right-radius: 3px;
+}
+
+.chatlog__embed-content {
+    display: flex;
+    width: 100%;
+}
+
+.chatlog__embed-text {
+    flex: 1;
+}
+
+.chatlog__embed-author {
+    display: flex;
+    margin-bottom: 0.3em;
+    align-items: center;
+}
+
+.chatlog__embed-author-icon {
+    margin-right: 0.5em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+}
+
+.chatlog__embed-author-name {
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-title {
+    margin-bottom: 0.2em;
+    font-size: 0.875em;
+    font-weight: 600;
+}
+
+.chatlog__embed-description {
+    font-weight: 500;
+    font-size: 0.85em;
+}
+
+.chatlog__embed-fields {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.chatlog__embed-field {
+    flex: 0;
+    min-width: 100%;
+    max-width: 506px;
+    padding-top: 0.6em;
+    font-size: 0.875em;
+}
+
+.chatlog__embed-field--inline {
+    flex: 1;
+    flex-basis: auto;
+    min-width: 150px;
+}
+
+.chatlog__embed-field-name {
+    margin-bottom: 0.2em;
+    font-weight: 600;
+}
+
+.chatlog__embed-field-value {
+    font-weight: 500;
+}
+
+.chatlog__embed-thumbnail {
+    flex: 0;
+    margin-left: 1.2em;
+    max-width: 80px;
+    max-height: 80px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-image-container {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-image {
+    max-width: 500px;
+    max-height: 400px;
+    border-radius: 3px;
+}
+
+.chatlog__embed-footer {
+    margin-top: 0.6em;
+}
+
+.chatlog__embed-footer-icon {
+    margin-right: 0.2em;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    vertical-align: middle;
+}
+
+.chatlog__embed-footer-text {
+    font-size: 0.75em;
+    font-weight: 500;
+}
+
+.chatlog__reactions {
+    display: flex;
+}
+
+.chatlog__reaction {
+    display: flex;
+    align-items: center;
+    margin: 0.35em 0.1em 0.1em 0.1em;
+    padding: 0.2em 0.35em;
+    border-radius: 3px;
+}
+
+.chatlog__reaction-count {
+    min-width: 9px;
+    margin-left: 0.35em;
+    font-size: 0.875em;
+}
+
+.chatlog__bot-tag {
+    position: relative;
+    top: -.2em;
+    margin-left: 0.3em;
+    padding: 0.05em 0.3em;
+    border-radius: 3px;
+    vertical-align: middle;
+    line-height: 1.3;
+    background: #7289da;
+    color: #ffffff;
+    font-size: 0.625em;
+    font-weight: 500;
+}
+
+/* Postamble */
+
+.postamble {
+    margin: 1.4em 0.3em 0.6em 0.3em;
+    padding: 1em;
+    border-top: 1px solid;
+}
+    </style>
+    <style>
+        /* General */
+
+body {
+    background-color: #36393e;
+    color: #dcddde;
+}
+
+a {
+    color: #0096cf;
+}
+
+.spoiler-text {
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.spoiler--hidden .spoiler-text {
+    background-color: #202225;
+}
+
+.spoiler--hidden:hover .spoiler-text {
+    background-color: rgba(32, 34, 37, 0.8);
+}
+
+.quote {
+    border-color: #4f545c;
+}
+
+.pre {
+    background-color: #2f3136 !important;
+}
+
+.pre--multiline {
+    border-color: #282b30 !important;
+    color: #b9bbbe !important;
+}
+
+/* === Preamble === */
+
+.preamble__entry {
+    color: #ffffff;
+}
+
+/* Chatlog */
+
+.chatlog__message-group {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.chatlog__author-name {
+    color: #ffffff;
+}
+
+.chatlog__timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__message--highlighted {
+    background-color: rgba(114, 137, 218, 0.2) !important;
+}
+
+.chatlog__message--pinned {
+    background-color: rgba(249, 168, 37, 0.05);
+}
+
+.chatlog__edited-timestamp {
+    color: rgba(255, 255, 255, 0.2);
+}
+
+.chatlog__embed-color-pill--default {
+    background-color: rgba(79, 84, 92, 1);
+}
+
+.chatlog__embed-content-container {
+    background-color: rgba(46, 48, 54, 0.3);
+    border-color: rgba(46, 48, 54, 0.6);
+}
+
+.chatlog__embed-author-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-author-name-link {
+    color: #ffffff;
+}
+
+.chatlog__embed-title {
+    color: #ffffff;
+}
+
+.chatlog__embed-description {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-field-name {
+    color: #ffffff;
+}
+
+.chatlog__embed-field-value {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__embed-footer {
+    color: rgba(255, 255, 255, 0.6);
+}
+
+.chatlog__reaction {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+.chatlog__reaction-count {
+    color: rgba(255, 255, 255, 0.3);
+}
+
+/* Postamble */
+
+.postamble {
+    border-color: rgba(255, 255, 255, 0.1);
+}
+
+.postamble__entry {
+    color: #ffffff;
+}
+    </style>
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/styles/solarized-dark.min.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/9.15.6/highlight.min.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            document.querySelectorAll('.pre--multiline').forEach(block => hljs.highlightBlock(block));
+        });
+    </script>
+
+    <script>
+        function scrollToMessage(event, id) {
+            var element = document.getElementById('message-' + id);
+
+            if (element) {
+                event.preventDefault();
+
+                element.classList.add('chatlog__message--highlighted');
+
+                window.scrollTo({
+                    top: element.getBoundingClientRect().top - document.body.getBoundingClientRect().top - (window.innerHeight / 2),
+                    behavior: 'smooth'
+                });
+
+                window.setTimeout(function() {
+                    element.classList.remove('chatlog__message--highlighted');
+                }, 2000);
+            }
+        }
+
+        function showSpoiler(event, element) {
+            if (element && element.classList.contains('spoiler--hidden')) {
+                event.preventDefault();
+                element.classList.remove('spoiler--hidden');
+            }
+        }
+    </script>
+</head>
+<body>
+
+<div class="preamble">
+    <div class="preamble__guild-icon-container">
+        <img class="preamble__guild-icon" src="https://cdn.discordapp.com/icons/728719472860594209/a_48b7c5ef199249e58f3527850bb049ee.png" alt="Guild icon">
+    </div>
+    <div class="preamble__entries-container">
+        <div class="preamble__entry">Welcome To The Velvet Station</div>
+        <div class="preamble__entry">Tokyo LDZ - Western Sector / shinjuku-tunnels</div>
+
+
+    </div>
+</div>
+
+<div class="chatlog">
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 12:52 AM</span>
+
+            <div class="chatlog__message chatlog__message--pinned" data-message-id="776323485747642378" id="message-776323485747642378">
+                <div class="chatlog__content">
+                    <div class="markdown">The subway tunnels under Shinjuku. In spite of the station&#39;s large size, you can almost swear that these are longer than they were before... and more maze-like, too? Strange...
+BGM: <a href="https://www.youtube.com/watch?v=WJKiD3wjqTI">https://www.youtube.com/watch?v=WJKiD3wjqTI</a> </div>
+                </div>
+
+
+                    <div class="chatlog__embed">
+                            <div class="chatlog__embed-color-pill" style="background-color: rgba(255,0,0,255)"></div>
+
+                        <div class="chatlog__embed-content-container">
+                            <div class="chatlog__embed-content">
+                                <div class="chatlog__embed-text">
+                                        <div class="chatlog__embed-author">
+
+                                                <span class="chatlog__embed-author-name">
+                                                        <a class="chatlog__embed-author-name-link" href="https://www.youtube.com/channel/UC3bqdhHRplqi1tT2bek3IPg">Clashman The Third</a>
+                                                </span>
+                                        </div>
+
+                                        <div class="chatlog__embed-title">
+                                                <a class="chatlog__embed-title-link" href="https://www.youtube.com/watch?v=WJKiD3wjqTI">
+                                                    <div class="markdown">Shin Megami Tensei Nocturne Unreleased Music [7]: Shinjuku Medical ...</div>
+                                                </a>
+                                        </div>
+
+                                        <div class="chatlog__embed-description">
+                                            <div class="markdown">All songs downloaded from <a href="https://www.youtube.com/watch?v=vnUQlGdjIhQ">https://www.youtube.com/watch?v=vnUQlGdjIhQ</a> &#39;s description. 
+Playlist: <a href="https://www.youtube.com/playlist?list=PLpQSIG6Gt1FWp1X-P96KtNr7buJPpWMQO">https://www.youtube.com/playlist?list=PLpQSIG6Gt1FWp1X-P96KtNr7buJPpWMQO</a>
+Sorry for making this with tovid.io, but I didn&#39;t know what else to use.</div>
+                                        </div>
+
+                                </div>
+
+                                    <div class="chatlog__embed-thumbnail-container">
+                                        <a class="chatlog__embed-thumbnail-link" href="https://i.ytimg.com/vi/WJKiD3wjqTI/maxresdefault.jpg">
+                                            <img class="chatlog__embed-thumbnail" src="https://i.ytimg.com/vi/WJKiD3wjqTI/maxresdefault.jpg" alt="Thumbnail">
+                                        </a>
+                                    </div>
+                            </div>
+
+
+                        </div>
+                    </div>
+
+            </div>
+            <div class="chatlog__message " data-message-id="776323496216887307" id="message-776323496216887307">
+                <div class="chatlog__content">
+                    <div class="markdown">Pinned a message. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:16 PM</span>
+
+            <div class="chatlog__message " data-message-id="776571057989353553" id="message-776571057989353553">
+                <div class="chatlog__content">
+                    <div class="markdown">Once the first group was securely gone and seemed to be doing ok, Abel groaned and looked to Vivian&#39;s body. A flash of guilt washing over him before piping up. 
+
+&quot;So how are we gonna transport her body? We can&#39;t just...carry it. Unless we wanna be constantly picking her up and putting her down whenever enemies appear.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="776571536101867532" id="message-776571536101867532">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;...Who&#39;s the strongest person out of all of us?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="776571764976386099" id="message-776571764976386099">
+                <div class="chatlog__content">
+                    <div class="markdown">Makino would volunteer but he still has that real bad bruise on his arm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="776572041209839627" id="message-776572041209839627">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I&#39;ll do it.&#39;&#39; Enzan offered. &quot;I don&#39;t need to hold Muramasa to fight.&#39;&#39; <span class="chatlog__edited-timestamp" title="12-Nov-20 05:20 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="776572135829143592" id="message-776572135829143592">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well... I would suggest cremation but... we can&#39;t do that here, and plus not everyone wants that. Burial would be better in this case.&quot; Rhiannon sighed. She hated seeing Vivian&#39;s body. She tried to look away. &quot;But where could we bury here in here?!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="776572666912047104" id="message-776572666912047104">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;There&#39;s gotta be a location we can bury her at. We can&#39;t just do nothing...Enzan do you wanna grab her and we can get going?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="776572876719259648" id="message-776572876719259648">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;True... I just think finding a good spot in these tunnels will be tough. But no sense in not trying.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="776573178453032995" id="message-776573178453032995">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan nodded, picking Vivian up gently. It wasn&#39;t as if he could shake her awake, but she&#39;d suffered enough. &quot;Agreed. Let&#39;s get going.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="776573359743172628" id="message-776573359743172628">
+                <div class="chatlog__content">
+                    <div class="markdown">He nodded, starting to walk down the tunnels with his pipe in his hand before looking to Suzuka. &quot;Care if I ask you something.&quot; He muttered </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="776573675377655820" id="message-776573675377655820">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon followed behind, her footsteps echoing lightly. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="776573852149874750" id="message-776573852149874750">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;What is it?&quot; She turned. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="776573966281605191" id="message-776573966281605191">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Why not go with your student? Chizuru? I&#39;m not asking to be disrespectful..just wondering.&quot; He muttered. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="776574897828397057" id="message-776574897828397057">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I have faith in her character. She&#39;ll... be alright.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="776575322099417149" id="message-776575322099417149">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I&#39;ll trust ya on that.&quot; He muttered, still walking ahead. &quot;I&#39;m..still kinda just coming down from it all so pardon any rudeness.&quot; He said, tightening his grip on the pipe he had before Asclepius appeared.
+&quot;If anyone needs healing I have the ability. My power is lacking currently, but I can heal.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:33 PM</span>
+
+            <div class="chatlog__message " data-message-id="776575550957289484" id="message-776575550957289484">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;My back is just aching from slamming into the wall in the train.&quot; Rhiannon huffed. &quot;But besides that and the go-to bruises I&#39;m alright.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:34 PM</span>
+
+            <div class="chatlog__message " data-message-id="776575663007989780" id="message-776575663007989780">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;... Arm&quot; He surprisingly said despite his quiet nature </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776576366195900437" id="message-776576366195900437">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan nodded, but didn&#39;t take him up on it, not yet. He needed to focus, and he wasn&#39;t fully sure how their powers worked. It would be a waste to heal bruises and have nothing for a greater injury. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776576531093913611" id="message-776576531093913611">
+                <div class="chatlog__content">
+                    <div class="markdown">Suzuka shook her head. &quot;I&#39;m alright, I think.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776576559398125568" id="message-776576559398125568">
+                <div class="chatlog__content">
+                    <div class="markdown">Asclepius would go on over to Makino, dull green leaves slowly appearing and wrapping around Makino&#39;s arm like bandages before beginning to turn light shades of red then orange then grey as the leaves crumbled away leaving no bruise on his arm. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="776577371514994749" id="message-776577371514994749">
+                <div class="chatlog__content">
+                    <div class="markdown">Makino nods at Abel and Asclepius as a sign of thanks, and is now about hug his pillow full force again, yay for him </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776578295029563422" id="message-776578295029563422">
+                <div class="chatlog__content">
+                    <div class="markdown">Oh yeah, on a very less important note, he can probably actually physically attack well now too </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:45 PM</span>
+
+            <div class="chatlog__message " data-message-id="776578547840974859" id="message-776578547840974859">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Fancy magics there, good sir!&quot; Rhiannon chuckled, nodding up at Asclepius. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="776578872703451207" id="message-776578872703451207">
+                <div class="chatlog__content">
+                    <div class="markdown">The gang would continue walking, the tunnels echoing more and more sound around them as they walked, the quiet slowly overwhelming with each added step </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="776579532198117416" id="message-776579532198117416">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan didn&#39;t mind the quiet, at least, not too much. It would be easier to notice anything trying to attack them, hopefully. It was almost peaceful after the chaos of that battle. But it did leave him alone with his thought, and the fact he didn&#39;t know what to think. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="776579881240231976" id="message-776579881240231976">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon kept to herself, quietly following along. She tried to squint her eye to see better, the dark even more difficult with her eyepatch. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="776580646813827123" id="message-776580646813827123">
+                <div class="chatlog__content">
+                    <div class="markdown">Suzuka flipped on a phone flashlight, to better light the tunnel. 
+...It was almost surreal, walking this path with no train in sight... </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="776580657903304735" id="message-776580657903304735">
+                <div class="chatlog__content">
+                    <div class="markdown">All Makino can do is make it even darker, too bad Sandman knows that the darkness is better since he is waeak to Light </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="776580753592025108" id="message-776580753592025108">
+                <div class="chatlog__content">
+                    <div class="markdown">Why...Why was there the distant sound of shopping cart wheels </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="776581001354280991" id="message-776581001354280991">
+                <div class="chatlog__content">
+                    <div class="markdown">He stops and brings out his phone, instinctually tapping on the demon summoning app, he&#39;s already gonna do that too much, the phone addict </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 05:57 PM</span>
+
+            <div class="chatlog__message " data-message-id="776581548916342784" id="message-776581548916342784">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan wriggled his phone into his hand, more interested in not dropping Vivian. It would be best if they didn&#39;t fight, but he refused to be caught unprepared. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="776582934059941910" id="message-776582934059941910">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;...Do you hear that?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="776583929049120789" id="message-776583929049120789">
+                <div class="chatlog__content">
+                    <div class="markdown">The sound would get closer... And closer still. Until...
+
+A funny looking Demon approached, pushing a shopping cart filled with snacks, magazines, and- Were those weapons? He stopped in his tracks upon seeing the group, turning his black eyes to them. &quot;H...hee? I was right! I knew I&#39;d find customers ho-here!&quot; He just about lept for joy, very quickly flipping down a wooden sign on his cart.
+
+&#39;Jack Cost&#39;s Emporium&#39;
+
+...What the fuck is going on here. </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="jackdie" title="jackdie" src="https://cdn.discordapp.com/emojis/754161599664619681.png">
+                                <span class="chatlog__reaction-count">4</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="776584699216003123" id="message-776584699216003123">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;.......&quot; Rhiannon blinked. &quot;What the fuck??&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="776584731352629279" id="message-776584731352629279">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel just stared, Asclepius looking at the scene before him as well before Abel was the first to pipe up.
+
+&quot;Are...Are you Jack Cost?&quot; He asked, looking down at the fellow </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585400100585522" id="message-776585400100585522">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hee-hey! Watch the language, buddy! This is a family shop!&quot; He scolded Rhiannon, before turning back to Abel. &quot;Hee-hat&#39;s right! Jack cost, aspiring heentraprenuer!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585543072219137" id="message-776585543072219137">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan blinked, shuffling back some. Holding a corpse did not generally make one look genial or friendly. &quot;Emporium? What would you be selling?&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585596763635733" id="message-776585596763635733">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;...I love him&quot; Abel muttered, he was already attached to the lad, crouching down. &quot;Name&#39;s Abel.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585618478071809" id="message-776585618478071809">
+                <div class="chatlog__content">
+                    <div class="markdown">JACK COSTS)) </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776585635216883742" id="message-776585635216883742">
+                <div class="chatlog__content">
+                    <div class="markdown">I&#39;M)) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585700996284417" id="message-776585700996284417">
+                <div class="chatlog__content">
+                    <div class="markdown">((This is beautiful.)) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:14 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585846924771328" id="message-776585846924771328">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon blushed a bit and felt bad, but was still so confused by this demon. She curiously knelt down and eyed the items. &quot;Do you have lavender? Topaz? Books on spells?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="776585913399902239" id="message-776585913399902239">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;...&quot; He stared down at the Jack Frost Money fellow... &quot;Currency?&quot; He seems to be asking if Jack Cost takes Yen </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="776586870049341440" id="message-776586870049341440">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hee-hey, I&#39;m only starting out! My stock isn&#39;t that great!&quot; He motioned to the cart. &quot;It&#39;s mostly survival stuff, ho! Weapons, snacks, and bottled water! Hee-hyou&#39;re gonna need it!&quot; He looked proud, looking to Makino. &quot;Hee-usually, demons use a very particular currency... but I&#39;m not most demons, ho! I take yen, macca, dollars, rubles, ancient engraved runestones, anything!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776587477707784213" id="message-776587477707784213">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel nodded, standing up straight up with a grunt. &quot;So you&#39;re down here to sell to people?&quot; He asked, hands stuffed in his jacket pockets. &quot;Seems a bit obtuse to come out down here.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776587591113900052" id="message-776587591113900052">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan nodded. &quot;Prudent. You&#39;ve got a pretty good business sense, if an odd placement.&#39;&#39; He could explain any of his purchases in . . . Where ever he was, right? Not that he had much physical cash on him. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776587619768598528" id="message-776587619768598528">
+                <div class="chatlog__content">
+                    <div class="markdown">She lit up a bit. &quot;Do you have biscuits by chance?&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776587754154885130" id="message-776587754154885130">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Or dare I even ask... peppermint cookies?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="776589830121062422" id="message-776589830121062422">
+                <div class="chatlog__content">
+                    <div class="markdown">“...Why would you want <em>cookies</em> right now?” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776591472946315284" id="message-776591472946315284">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, I was expecting other heemons...&quot; He admitted. &quot;But any business is good business!&quot; He went to look through his stash of snacks. &quot;Stress eating is understandable, hoo! The world&#39;s ending, after all!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776591618765094952" id="message-776591618765094952">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;..How bad is it outside?&quot; Abel asked quietly, a lil worried at that comment </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:39 PM</span>
+
+            <div class="chatlog__message " data-message-id="776591931127889961" id="message-776591931127889961">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Snacks can come in handy. We don&#39;t know how long we&#39;ll be stuck here.&quot; Rhiannon huffed. She had her reasons! &quot;Might as well stock up on some things while we can.&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776592152187895849" id="message-776592152187895849">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;But yes, how much of the world is... ended outside?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="776592375178461236" id="message-776592375178461236">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, not much yet! Maybe I&#39;m being a little dramatic, ho!&quot; He shrugged, before offering a biscuit tin to Rhiannon. &quot;That&#39;ll be 250 yen, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="776592600961515531" id="message-776592600961515531">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon quickly got out her wallet and gave Jack the money. &quot;There you go. Thank you!&quot; She happily took the tin, going to sneak one to eat. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="776592913895129129" id="message-776592913895129129">
+                <div class="chatlog__content">
+                    <div class="markdown">He firstly took a look at the weapons, they may be useful.mm </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:47 PM</span>
+
+            <div class="chatlog__message " data-message-id="776594000895148052" id="message-776594000895148052">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan was torn between the practical option of getting supplies, and the stubborn self-imposed insistance of not putting Vivian down. Looking over the rest of his group, he sighed and set her down gently, slightly away amd tucked gently out of sight; he had to focus on what would happen next, and not on himself. He looked through his wallet before parusing the cart; he had a feeling that Jack wasn&#39;t equipped to take his card during the end of the world. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:48 PM</span>
+
+            <div class="chatlog__message " data-message-id="776594341710790666" id="message-776594341710790666">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hee-hmm... You know... You&#39;re probably all light on cash, and I don&#39;t take credit, ho...&quot; He assumed a thoughtful position. &quot;I&#39;ve decided! I&#39;m going to hee-help you all out, just this once! As a future investment, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:49 PM</span>
+
+            <div class="chatlog__message " data-message-id="776594579528613950" id="message-776594579528613950">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;What..does that mean?&quot; Abel asked, stuffing his hands into his jacket pockets...well a hand, the other was resting his pipe on his shoulder </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="776594694938820618" id="message-776594694938820618">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Not all demons are bad, you know-ho! Some are more than hee-happy to help you if you help them, ho! And I consider your future patronage a <em>big</em> hee-help, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:50 PM</span>
+
+            <div class="chatlog__message " data-message-id="776594844339535942" id="message-776594844339535942">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Couldn&#39;t agree more! Demons are a diverse, and wonderful bunch. I&#39;ve read all about them!&quot; Rhiannon chimed happily. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776595009587249173" id="message-776595009587249173">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;It&#39;s so overwhelming to meet them after all this time, though.&quot; She admitted. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:51 PM</span>
+
+            <div class="chatlog__message " data-message-id="776595138264694796" id="message-776595138264694796">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan gave a small smile. &quot;Then I look forward to our mutual benefits, Jack. A pleasure to do business with you.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="776595723193942066" id="message-776595723193942066">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Are there other demons in the tunnels like you right now?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 06:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="776596176488366140" id="message-776596176488366140">
+                <div class="chatlog__content">
+                    <div class="markdown">The group has recieved a quest!
+
+|A Starting Fund|
+Client: Jack Cost
+Reward: 2000 yen
+[It&#39;s in both our best interests if you hee-hurvive! So, I&#39;m floating you a small loan, ho! Pay me back at your leisure!]
+Requirement: Accept the quest from Jack Cost. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="776597572130701332" id="message-776597572130701332">
+                <div class="chatlog__content">
+                    <div class="markdown">“...”
+“...That’s it?” </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:01 PM</span>
+
+            <div class="chatlog__message " data-message-id="776597671862337566" id="message-776597671862337566">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well I mean, it&#39;s free money.&quot; Abel muttered, as if he&#39;s never earned a single yen in his life </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:02 PM</span>
+
+            <div class="chatlog__message " data-message-id="776597715005210647" id="message-776597715005210647">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Money&#39;s tight, ho! I&#39;m a startup, you know-ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:03 PM</span>
+
+            <div class="chatlog__message " data-message-id="776597994958356541" id="message-776597994958356541">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I feel almost bad about it... money isn&#39;t mean to be free.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:04 PM</span>
+
+            <div class="chatlog__message " data-message-id="776598371824566292" id="message-776598371824566292">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, you <em>are</em> gonna pay me back with your patronage, riiiight?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:05 PM</span>
+
+            <div class="chatlog__message " data-message-id="776598571851317248" id="message-776598571851317248">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan nodded. &quot;Of course. I keep my promises, and I respect a self made man, demon or otherwise. It must be hard for a start up.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="776598729994141736" id="message-776598729994141736">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Yeah, we&#39;ll pay ya back. You gotta stay in business somehow.&quot; He said. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:06 PM</span>
+
+            <div class="chatlog__message " data-message-id="776598874886111232" id="message-776598874886111232">
+                <div class="chatlog__content">
+                    <div class="markdown">That was a bit intimidating. But Rhiannon nodded. &quot;Yes! Definitely.&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776599082072276992" id="message-776599082072276992">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I wonder what the other group is up to right now...&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:07 PM</span>
+
+            <div class="chatlog__message " data-message-id="776599163168227329" id="message-776599163168227329">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I&#39;m sure they&#39;re fine. I doubt they&#39;ve run into anyone yet.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:09 PM</span>
+
+            <div class="chatlog__message " data-message-id="776599606430924860" id="message-776599606430924860">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I hope so.&#39;&#39; Enzan nodded. &quot;Or at least that they haven&#39;t run into anything they can&#39;t protect themselves from.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:10 PM</span>
+
+            <div class="chatlog__message " data-message-id="776599741169139802" id="message-776599741169139802">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, in the meantime, hoo! Take the loan.&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776599765638709320" id="message-776599765638709320">
+                <div class="chatlog__content">
+                    <div class="markdown">[QUEST COMPLETE!] </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:13 PM</span>
+
+            <div class="chatlog__message " data-message-id="776600584928624689" id="message-776600584928624689">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Oh, sweet. In any case care if we browse your wares fine vendor?&quot; He asked, speaking english before going to japanese again. &quot;Ah uhh, sorry, what do you have in stock?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601101218086915" id="message-776601101218086915">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Of course! Take a look, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601116108390419" id="message-776601116108390419">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon caught that english. She giggled a bit. &quot;Well said.&quot; She spoke back in english as well. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:15 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601190330269728" id="message-776601190330269728">
+                <div class="chatlog__content">
+                    <div class="markdown">((I&#39;ll leave the shop interface to Sylphie Wlyphie)) </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:17 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601534502141972" id="message-776601534502141972">
+                <div class="chatlog__content">
+                    <div class="markdown"><u>ITEMS</u>
+Medicine (+10 HP) - 500 Yen 
+Soul Stones (+5 SP) - 250 Yen
+Soul Beads (Revives) - 100 Yen
+Panacea (All Status Effects removed) - 100 Yen 
+<u>WEAPONS</u>
+Longsword: 500 Yen
+Bag of Rocks: 100 Yen 
+Makeshift Spear: 300 Yen 
+Knuckle Dusters: 450 Yen
+Knife - 200 Yen </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776601665116569631" id="message-776601665116569631">
+                <div class="chatlog__content">
+                    <div class="markdown">(All Players have 2000 Yen at this moment) </div>
+                </div>
+
+
+
+                    <div class="chatlog__reactions">
+                            <div class="chatlog__reaction">
+                                <img class="emoji emoji--small" alt="PogChamp" title="PogChamp" src="https://cdn.discordapp.com/emojis/776254888681799692.png">
+                                <span class="chatlog__reaction-count">2</span>
+                            </div>
+                    </div>
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601836961792052" id="message-776601836961792052">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Ooh.. bag of rocks? What kind?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:18 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601945908707338" id="message-776601945908707338">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Not crystals, sadly! Just jagged pond rocks, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601989202313286" id="message-776601989202313286">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Is this what you were talking about with using the rocks as payment? just turning them into blunt force weaponry?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="776601996861243412" id="message-776601996861243412">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;They make a good bludgeon!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602009494487040" id="message-776602009494487040">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Oh...&quot; Rhiannon frowned. No rock magic. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:19 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602073465880577" id="message-776602073465880577">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Per-heeps.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602246271598622" id="message-776602246271598622">
+                <div class="chatlog__content">
+                    <div class="markdown"><em>Next time, maybe take more money out to buy bread, you never know when you are going to meet an etheral salesman</em>
+
+He points and the bag of rocks &quot;Need.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602441360736256" id="message-776602441360736256">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel just looked to Makino. &quot;W-Why do you need the bag of rocks? Do you have some kinda urge to bludgeon someone?&quot; He asked. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602503361462295" id="message-776602503361462295">
+                <div class="chatlog__content">
+                    <div class="markdown">He nods </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602545661542401" id="message-776602545661542401">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;<em>Oh I wasn&#39;t expecting honesty ok then</em>&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602617978683392" id="message-776602617978683392">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well, I&#39;m more than hee-happy to encourage those tendancies!&quot; He hands over the bac. &quot;Hee-t&#39;ll be 100 yen, ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:21 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602667069210645" id="message-776602667069210645">
+                <div class="chatlog__content">
+                    <div class="markdown">He&#39;s tired of being nice, he wants to throw rocks. But instead of throwing, beating them on the head </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776602729832775680" id="message-776602729832775680">
+                <div class="chatlog__content">
+                    <div class="markdown">He hands over the Yen </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602747726331914" id="message-776602747726331914">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;The long sword looks interesting.&quot; Rhiannon admitted. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:22 PM</span>
+
+            <div class="chatlog__message " data-message-id="776602808023646228" id="message-776602808023646228">
+                <div class="chatlog__content">
+                    <div class="markdown">Transaction complete. He put the money... Somewhere. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603010360279100" id="message-776603010360279100">
+                <div class="chatlog__content">
+                    <div class="markdown">Makino has 1,900 Yen now.
+
+Abel looked over to the longsword as well, he wasn&#39;t saying anything. He just was staring at the sharp murder stick </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603244306497576" id="message-776603244306497576">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hmmm... I think I&#39;d like to use that.&quot; She pointed to the fancy sword. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603457791852564" id="message-776603457791852564">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hee-here you go!&quot; He offers the sword like a squire offering to a knight. It&#39;s pretty yeet. </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776603509452963871" id="message-776603509452963871">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;That&#39;ll be 250 yen!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603633483513907" id="message-776603633483513907">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan decides on 1 Med, 1 Stone, 1 Bead, 1 Knife. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:25 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603688004616214" id="message-776603688004616214">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Ah! Thank you!&quot; Rhiannon happily hands the money. She picks up the sword and eyes it with a glimmer in her iris. What crimes will she commit with this weapon? </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:26 PM</span>
+
+            <div class="chatlog__message " data-message-id="776603932381151283" id="message-776603932381151283">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel is deeply concerned seeing that glimmer in her eyes before speaking up in english once more. &quot;I uhh...you...sure you&#39;re going to be ok there Rhiannon?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604081018896415" id="message-776604081018896415">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hm?&quot; She looked to Abel. Sometimes, even her sweet face looked really off-putting. &quot;What do you mean? I&#39;m perfectly fine. I&#39;m excited!!&quot; </div>
+                </div>
+
+
+
+            </div>
+            <div class="chatlog__message " data-message-id="776604111872196628" id="message-776604111872196628">
+                <div class="chatlog__content">
+                    <div class="markdown">She spoke back in english. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604231054000149" id="message-776604231054000149">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;<em><strong>Miss you are holding a very sharp weapon. I trust you dearly but please don&#39;t be a twat</strong></em>&quot; He muttered nervously </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604364160630825" id="message-776604364160630825">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well you won&#39;t get anywhere being so rude.&quot; She frowned. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604454862585866" id="message-776604454862585866">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;<em>I am worried</em>&quot; He muttered once more. &quot;But I shall trust you.&quot; He said. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604482582216705" id="message-776604482582216705">
+                <div class="chatlog__content">
+                    <div class="markdown">Suzuka, for her part, took a Medicine and a Panacea. <span class="chatlog__edited-timestamp" title="12-Nov-20 07:29 PM">(edited)</span></div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:30 PM</span>
+
+            <div class="chatlog__message " data-message-id="776604892109864970" id="message-776604892109864970">
+                <div class="chatlog__content">
+                    <div class="markdown">He also bought 2 soul stones, a bead a nd a panacea </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776606573811466262" id="message-776606573811466262">
+                <div class="chatlog__content">
+                    <div class="markdown">He swapped to japanese once more and looked over to Cost again. &quot;Any idea on how we&#39;ll know you&#39;re nearby?&quot; He asked </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="776606875260420097" id="message-776606875260420097">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Just listen for the hee-ho!&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="776606977358168085" id="message-776606977358168085">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Alright, we shall listen in for the hee-ho. You&#39;ve been a great help Jack.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:40 PM</span>
+
+            <div class="chatlog__message " data-message-id="776607498823794720" id="message-776607498823794720">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan bowed to Jack politely. &quot;Thank you, Jack. We&#39;ll pay you back for your kindness, for sure.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/531551488460193792/a92803b1660fd3380283c153fe6c6ef3.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Acorn Jelly!! [ROI]#7690" data-user-id="531551488460193792" style="color: rgb(255,167,244)">Roi but he has a Nyasona</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:41 PM</span>
+
+            <div class="chatlog__message " data-message-id="776607679702499329" id="message-776607679702499329">
+                <div class="chatlog__content">
+                    <div class="markdown">He nodded in agreement, Jack Cost has become a friend </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/263814852638801920/1a356b3d4ccc342a0234794b1eff5379.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="AztecSirachup#0201" data-user-id="263814852638801920" style="color: rgb(241,196,15)">i got a plan, arthur.</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="776607777594277918" id="message-776607777594277918">
+                <div class="chatlog__content">
+                    <div class="markdown">“We’ll see you around.” She waved him off with a smile. <em>So not all of them want to hurt us...</em> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/742240032315670629/86c8c1722848b78868bd740f9bc5cac8.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="lun#1484" data-user-id="742240032315670629" style="color: rgb(249,74,255)">U.N. Owen was Lun?</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="776608132683661353" id="message-776608132683661353">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Hee-yronara, hee-homeboys!&quot; With that, Jack fled the scene.
+
+You have the feeling you&#39;ll be seeing a lot of him. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="776608347595604008" id="message-776608347595604008">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Take care!&quot; Rhiannon waved. &quot;Well, then... what a nice fellow.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:44 PM</span>
+
+            <div class="chatlog__message " data-message-id="776608518639845396" id="message-776608518639845396">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel nodded. &quot;Yeah, he was nice...Now what.&quot; He muttered. &quot;Should we text Chizu and the others about this?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:54 PM</span>
+
+            <div class="chatlog__message " data-message-id="776610998739140608" id="message-776610998739140608">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;We could.&#39;&#39; Enzan nodded, picking Vivian back up after putting the knife through a belt loop. He hoped he wouldn&#39;t have to use it while carrying her. &quot;Won&#39;t stop us moving if we choose to.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 07:55 PM</span>
+
+            <div class="chatlog__message " data-message-id="776611229313138699" id="message-776611229313138699">
+                <div class="chatlog__content">
+                    <div class="markdown">He nodded, opting to pull out his phone and send Chizuru a text explaining the situation with Jack Cost. Though he sadly had no images of the lad. &quot;So if they see him they know he&#39;s safe.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:20 PM</span>
+
+            <div class="chatlog__message " data-message-id="776617389021855755" id="message-776617389021855755">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Do we keep going now? Or should we regroup?&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:23 PM</span>
+
+            <div class="chatlog__message " data-message-id="776618305343586344" id="message-776618305343586344">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Let&#39;s go regroup. They&#39;ll probably be waiting for us by the time we get back...we didn&#39;t find a place to bury Vivian but we at least found an ally&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:24 PM</span>
+
+            <div class="chatlog__message " data-message-id="776618465141456989" id="message-776618465141456989">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;We still need to find a place.&#39;&#39; Enzan said. &quot;I vote keep going, but we should probably try to keep track of where we&#39;ve been.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:27 PM</span>
+
+            <div class="chatlog__message " data-message-id="776619121277534270" id="message-776619121277534270">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;Well... whatever you all wish to do is fine by me. But I do agree finding a place to bury Vivian is important.&quot; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:28 PM</span>
+
+            <div class="chatlog__message " data-message-id="776619521812332545" id="message-776619521812332545">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;We can discuss it with the group. Considering all we&#39;ve been hearing through the tunnels, being all together helps.&quot; He said </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:31 PM</span>
+
+            <div class="chatlog__message " data-message-id="776620286036279306" id="message-776620286036279306">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I suppose. Is that alright with you, Enzan?&quot; Rhiannon asked. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:37 PM</span>
+
+            <div class="chatlog__message " data-message-id="776621735646199839" id="message-776621735646199839">
+                <div class="chatlog__content">
+                    <div class="markdown">&quot;I&#39;m alright with that.&#39;&#39; Enzan nodded. &quot;We aren&#39;t exactly in a rush.&#39;&#39; </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/173544175474704385/f0e1af815c787a898ceebc260d708e28.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="SylphWind#2834" data-user-id="173544175474704385" style="color: rgb(52,152,219)">Hideo Kojima</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:38 PM</span>
+
+            <div class="chatlog__message " data-message-id="776621925849759744" id="message-776621925849759744">
+                <div class="chatlog__content">
+                    <div class="markdown">Abel nodded and walked ahead towards <span class="mention">#shinjuku-station</span> </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/241667679780470784/64dceafd097109b28ba9ffb5a8de32da.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="❤⎜ZOMBIE.EXE⎜❤#7217" data-user-id="241667679780470784" style="color: rgb(170,170,238)">❤||Truck||❤</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:42 PM</span>
+
+            <div class="chatlog__message " data-message-id="776622948088938527" id="message-776622948088938527">
+                <div class="chatlog__content">
+                    <div class="markdown">Rhiannon followed behind. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+
+<div class="chatlog__message-group">
+    <div class="chatlog__author-avatar-container">
+        <img class="chatlog__author-avatar" src="https://cdn.discordapp.com/avatars/214572234415538186/6167f4042031605a15b5ac2ad303b4bf.png" alt="Avatar">
+    </div>
+    <div class="chatlog__messages">
+        <span class="chatlog__author-name" title="Miss Jenca#4240" data-user-id="214572234415538186" style="color: rgb(155,89,182)">Nagito is Forbidden</span>
+
+
+        <span class="chatlog__timestamp">12-Nov-20 08:43 PM</span>
+
+            <div class="chatlog__message " data-message-id="776623125780889651" id="message-776623125780889651">
+                <div class="chatlog__content">
+                    <div class="markdown">Enzan brought Vivian. </div>
+                </div>
+
+
+
+            </div>
+    </div>
+</div>
+
+</div>
+
+<div class="postamble">
+    <div class="postamble__entry">Exported 135 message(s)</div>
+</div>
+
+</body>
+</html>
